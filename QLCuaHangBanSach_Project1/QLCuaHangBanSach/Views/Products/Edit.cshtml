@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "Products Page";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model Sach
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="sherah-body">
+                <!-- Dashboard Inner -->
+                <div class="sherah-dsinner">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="sherah-breadcrumb mg-top-30">
+                                <h2 class="sherah-breadcrumb__title">Edit Product</h2>
+                                <ul class="sherah-breadcrumb__list">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active"><a href="profile-info.html">Edit Product</a></li>
+                                </ul>
+                            </div>
+                        </div>  
+                    </div>
+                    <div asp-validation-summary="All" class="sherah-page-inner sherah-border sherah-basic-page sherah-default-bg mg-top-25 p-0">
+                        <form asp-controller="Products" asp-action="Edit" asp-route-id="@Model.MaSach" class="sherah-wc__form-main" method="post">
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <!-- Product Info -->
+                                    <div class="product-form-box sherah-border mg-top-30">
+                                        <h4 class="form-title m-0">Basic Information</h4>
+                                        <div class="row">
+                                            <input type="hidden" asp-for="MaSach" />
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="TenSach" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <input asp-for="TenSach" class="sherah-wc__form-input" placeholder="Tên sách" type="text">
+                                                    </div>
+                                                    <span asp-validation-for="TenSach" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="SoLuong" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <input asp-for="SoLuong" class="sherah-wc__form-input" placeholder="Số lượng" type="text">
+                                                    </div>
+                                                    <span asp-validation-for="SoLuong" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="GiaNhap" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <input asp-for="GiaNhap" class="sherah-wc__form-input" placeholder="Giá nhập sách" type="text">
+                                                    </div>
+                                                    <span asp-validation-for="GiaNhap" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="GiaBan" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <input asp-for="GiaBan" class="sherah-wc__form-input" placeholder="Giá bán sách" type="text">
+                                                    </div>
+                                                    <span asp-validation-for="GiaBan" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="SoTrang" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <input asp-for="SoTrang" class="sherah-wc__form-input" placeholder="Số trang" type="text">
+                                                    </div>
+                                                    <span asp-validation-for="SoTrang" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="KhoiLuong" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <input asp-for="KhoiLuong" class="sherah-wc__form-input" placeholder="Khối lượng" type="text">
+                                                    </div>
+                                                    <span asp-validation-for="KhoiLuong" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="MoTa" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <textarea asp-for="MoTa" class="sherah-wc__form-input" placeholder="Mô tả" type="text"></textarea>
+                                                    </div>
+                                                    @* <span asp-validation-for="Mota" class="text-danger"></span> *@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Product Info -->
+                                </div>
+                                    <div class="col-lg-6 col-12">
+                                        <!-- Organization -->
+                                        <div class="product-form-box sherah-border mg-top-30">
+                                            <h4 class="form-title m-0">Basic Information</h4>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="MaNxb" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <input asp-for="MaNxb" class="sherah-wc__form-input" placeholder="Type here" type="text">
+                                                    </div>
+                                                    <span asp-validation-for="MaNxb" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="MaTg" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <input asp-for="MaTg" class="sherah-wc__form-input" placeholder="Type here" type="text">
+                                                    </div>
+                                                    <span asp-validation-for="MaTg" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="MaTl" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <input asp-for="MaTl" class="sherah-wc__form-input" placeholder="Type here" type="text">
+                                                    </div>
+                                                    <span asp-validation-for="MaTl" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label asp-for="Anh" class="sherah-wc__form-label"></label>
+                                                    <div class="form-group__input">
+                                                        <input asp-for="Anh" class="sherah-wc__form-input" placeholder="Type here" type="text">
+                                                    </div>
+                                                    <span asp-validation-for="Anh" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Organization -->
+                                    </div>
+                            </div>
+                            <div class=" mg-top-40 sherah-dflex sherah-dflex-gap-30 justify-content-end">
+                                <button type="submit" class="sherah-btn sherah-btn__primary">Save change</button>
+                                <button class="sherah-btn sherah-btn__third">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

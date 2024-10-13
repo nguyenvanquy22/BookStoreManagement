@@ -1,0 +1,284 @@
+﻿@{
+
+    ViewData["Title"] = "Delete Page";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model Sach
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="sherah-body">
+                <!-- Dashboard Inner -->
+                <div class="sherah-dsinner">
+                    <div class="row mg-top-30">
+                        <div class="col-12 sherah-flex-between">
+                            <!-- Sherah Breadcrumb -->
+                            <div class="sherah-breadcrumb">
+                                <h2 class="sherah-breadcrumb__title">
+                                    Product Details
+                                </h2>
+                                <ul class="sherah-breadcrumb__list">
+                                    <li>
+                                        <a href="#">Home</a>
+                                    </li>
+                                    <li class="active">
+                                        <a asp-action="Index">Products Details</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Sherah Breadcrumb -->
+                        </div>
+                    </div>
+                    <div class="product-detail-body sherah-default-bg sherah-border mg-top-30">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <!-- Product Slider -->
+                                <div class="product-gallery">
+                                    <!-- product details image -->
+                                    <div class="product-details-image">
+                                        <div class="main-preview-image">
+                                            <div class="tab-content product-image" id="pills-tabContent">
+                                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                                    <div class="single-product-image">
+                                                        <img src="~/img/Products/@Model.Anh" alt="product">
+                                                    </div>
+                                                    <!-- single product image -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- product details image -->
+                                </div>
+                                <!-- End Product slider -->
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div  class="product-detail-body__content">
+                                    <h2 class="product-detail-body__title">@Model.TenSach</h2>
+                                    <p class="product-detail-body__stats"><strong>Mã Sản Phẩm:</strong> @Model.MaSach</p>
+                                    <div class="product-detail-body__deal--rating">
+                                        <h5 class="sherah-product-card__price">
+                                           Giá bán sản phẩm: @Model.GiaBan
+                                        </h5>
+                                        @* <div  class="sherah-product-card__meta sherah-dflex sherah-flex-gap-30">
+                                            <div class="sherah-product-card__rating sherah-dflex sherah-flex-gap-5">
+                                                <span class="sherah-color4">
+                                                    <i class="fa fa-star"></i>
+                                                </span>
+                                                <span class="sherah-color4">
+                                                    <i class="fa fa-star"></i>
+                                                </span>
+                                                <span class="sherah-color4">
+                                                    <i class="fa fa-star"></i>
+                                                </span>
+                                                <span class="sherah-color4">
+                                                    <i class="fa fa-star"></i>
+                                                </span>
+                                                <span class="sherah-color4">
+                                                    <i class="fa fa-star"></i>
+                                                </span>
+                                                (33)
+
+                                            </div> *@
+                                        @* </div> *@
+                                    </div>
+                                    <p class="product-detail-body__stock sherah-color3">Số lượng: @Model.SoLuong</p>
+                                    <div class="product-detail-body__text" style="text-align: justify">
+                                        Việc đọc sách không chỉ là một thú vui mà còn mang đến lợi ích lớn cho sự phát triển cá nhân. 
+                                        Đó là cách tốt để mở rộng tri thức, cải thiện kỹ năng đọc và viết, tạo cảm giác thư giãn, và khám 
+                                        phá một thế giới đa dạng hơn. Đừng bỏ lỡ cơ hội khám phá và học hỏi từ sách!
+                                    </div>
+                                    <!-- Sherah Product Button -->
+                                    <div class="product-inside-button">
+                                       @* <div class="sherah-button-group">
+                                            <div class="quantity">
+                                                <!-- Input Order -->
+                                                <div class="input-group">
+                                                    <div class="button minus">
+                                                        <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                            -
+                                                        </button>
+                                                    </div>
+                                                    <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="10" value="0">
+                                                    <div class="button plus">
+                                                        <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+                                                            +
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <!--/ End Input Order -->
+                                            </div>
+                                            <a href="#" class="sherah-btn">Add to Cart</a>
+                                            <a href="#" class="sherah-btn default">
+                                                <svg class="sherah-default__fill sherah-default__heart" xmlns="http://www.w3.org/2000/svg" width="21.559" height="19.349" viewBox="0 0 21.559 19.349">
+                                                    <path id="Path_533" data-name="Path 533" d="M111.852,15.093v.924a1.034,1.034,0,0,0-.03.135,7.2,7.2,0,0,1-1.211,3.339,14.326,14.326,0,0,1-2.5,2.868c-1.887,1.684-3.8,3.337-5.713,4.994a1.2,1.2,0,0,1-1.7-.04q-2.192-1.885-4.378-3.777a22.751,22.751,0,0,1-3.411-3.5,7.509,7.509,0,0,1-1.514-3.347,6.362,6.362,0,0,1,1.4-5.335,5.368,5.368,0,0,1,5.028-1.9,5.245,5.245,0,0,1,3.221,1.768c.184.2.352.414.539.635.092-.119.171-.225.255-.327s.18-.216.277-.318a5.235,5.235,0,0,1,5.72-1.543,5.583,5.583,0,0,1,3.813,4.222C111.746,14.284,111.784,14.692,111.852,15.093Z" transform="translate(-90.794 -8.871)" stroke-width="1"></path>
+                                                </svg>
+                                            </a>
+                                            <a href="#" class="sherah-btn default">
+                                                <svg class="sherah-default__fill" xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20">
+                                                    <g id="Com" transform="translate(-0.268 0)">
+                                                        <path id="Path_527" data-name="Path 527" d="M7.895.663a4.9,4.9,0,0,1-.024.662c-.012,0-.206.035-.425.082A8.8,8.8,0,0,0,.334,8.8,9.839,9.839,0,0,0,.45,11.808a8.86,8.86,0,0,0,3.875,5.507l.226.14.56-.413a6.464,6.464,0,0,0,.56-.436.953.953,0,0,0-.218-.136,7.762,7.762,0,0,1-1.934-1.524,7.446,7.446,0,0,1-1.878-3.917,9.631,9.631,0,0,1,0-2.085,7.5,7.5,0,0,1,1.116-2.95A7.776,7.776,0,0,1,5.751,3.352a8.609,8.609,0,0,1,2.017-.678l.127-.023V3.2a3.624,3.624,0,0,0,.02.546c.04,0,2.521-1.843,2.521-1.871S7.954,0,7.915,0A5.311,5.311,0,0,0,7.895.663Z" transform="translate(0 0)"></path>
+                                                        <path id="Path_528" data-name="Path 528" d="M13.219,2.958a3.6,3.6,0,0,0-.54.44,1.467,1.467,0,0,0,.27.168,7.818,7.818,0,0,1,2.918,2.95,7.809,7.809,0,0,1,.842,2.615,8.959,8.959,0,0,1-.1,2.362,7.546,7.546,0,0,1-4.848,5.514,10.126,10.126,0,0,1-1.275.343c-.044,0-.056-.1-.056-.546a3.622,3.622,0,0,0-.02-.546c-.04,0-2.521,1.843-2.521,1.871S10.376,20,10.416,20a5.307,5.307,0,0,0,.02-.662v-.659l.151-.023a14,14,0,0,0,1.755-.468A8.765,8.765,0,0,0,18,11.154a9.922,9.922,0,0,0-.119-2.962,8.86,8.86,0,0,0-3.875-5.507l-.226-.14Z" transform="translate(0.206)"></path>
+                                                    </g>
+                                                </svg>
+                                            </a>
+                                        </div>*@
+                                    </div>
+                                    <!-- End Sherah Product Button -->
+                                    <div class="sherah-border-btm pd-top-40 mg-btm-40"></div>
+                                    <div class="sherah-products-meta">
+                                        <ul class="sherah-products-meta__list">
+                                            <li>
+                                                <span class="p-list-title">Số Trang :</span>
+                                                @Model.SoTrang
+                                            </li>
+                                            <li>
+                                                <span class="p-list-title">Khối Lượng : </span>
+                                                @Model.KhoiLuong grams
+                                            </li>
+                                            <li>
+                                                <span class="p-list-title">Mã NXB :</span>
+                                                @Model.MaNxb
+                                            </li>
+                                            <li>
+                                                <span class="p-list-title">Share :</span>
+                                                <ul class="sherah-contact-info sherah-contact-social">
+                                                    <li class="sherah-border">
+                                                        <a href="#">
+                                                            <span class="sherah-color1__bg--offset">
+                                                                <i class="fa-brands fa-facebook-f"></i>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="sherah-border">
+                                                        <a href="#">
+                                                            <span class="sherah-color1__bg--offset">
+                                                                <i class="fa-brands fa-twitter"></i>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="sherah-border">
+                                                        <a href="#">
+                                                            <span class="sherah-color1__bg--offset">
+                                                                <i class="fa-brands fa-linkedin"></i>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="sherah-border">
+                                                        <a href="#">
+                                                            <span class="sherah-color1__bg--offset">
+                                                                <i class="fa-brands fa-instagram"></i>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-detail-body sherah-default-bg sherah-border mg-top-30">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="sherah-product-tabs mg-btm-30">
+                                    <div class="sherah-product-tabs__list list-group " id="list-tab" role="tablist">
+                                        <a class="list-group-item active" data-bs-toggle="list" href="#p_tab_1" role="tab">Description</a>
+                                        <a class="list-group-item" data-bs-toggle="list" href="#p_tab_2" role="tab">Product Detail</a>
+                                        @* <a class="list-group-item" data-bs-toggle="list" href="#p_tab_3" role="tab">Reviews</a> *@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="p_tab_1" role="tabpanel" aria-labelledby="nav-home-tab" style="text-align: justify">
+                                        <div class="sherah-product-tabs__text">
+                                            <p><strong>@Model.TenSach</strong></p>
+                                            @Model.MoTa
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="p_tab_2" role="tabpanel" aria-labelledby="nav-home-tab" style="text-align: justify">
+                                        <div class="tab-pane fade show active" id="p_tab_1" role="tabpanel" aria-labelledby="nav-home-tab" style="text-align: justify">
+                                            <div class="sherah-product-tabs__text">
+                                                <p><strong>Thông tin chi tiết về sản phẩm @Model.TenSach :</strong></p>
+                                            </div>
+                                        </div>
+                                        <div class="sherah-table p-0">
+                                            <table class="product-overview-table mg-top-30">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="product-overview-table_title">Tên Sách</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="product-overview-table_text">@Model.TenSach</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="product-overview-table_title">Mã Sách</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="product-overview-table_text">@Model.MaSach</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="product-overview-table_title">Số Lượng</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="product-overview-table_text">@Model.SoLuong</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="product-overview-table_title">Giá Bán</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="product-overview-table_text">@Model.GiaBan</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="product-overview-table_title">Số Trang</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="product-overview-table_text">@Model.SoTrang</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="product-overview-table_title">Khối Lượng</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="product-overview-table_text">@Model.KhoiLuong grams</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="product-overview-table_title">Mã NXB</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="product-overview-table_text">@Model.MaNxb</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Dashboard Inner -->
+            </div>
+        </div>
+    </div>
+</div>
+@* <script>
+    var contentDiv = document.getElementById("content_mota");
+    contentDiv.innerHTML = contentDiv.innerHTML.replace(/\n/g, "<br>");
+</script> *@
