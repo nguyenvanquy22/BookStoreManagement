@@ -1,0 +1,189 @@
+﻿@{
+    ViewData["Title"] = "Chi tiết hóa đơn" + ViewBag.Id;
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@{
+    var index = 1;
+}
+@model IEnumerable<ChiTietHdm>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="sherah-body">
+                <!-- Dashboard Inner -->
+                <div class="sherah-dsinner">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="sherah-breadcrumb mg-top-30">
+                                <h2 class="sherah-breadcrumb__title">Chi tiết hóa đơn</h2>
+                                <ul class="sherah-breadcrumb__list">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active"><a asp-action="Index">Quay lại danh sách</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sherah-page-inner sherah-border sherah-basic-page sherah-default-bg mg-top-25 p-0">
+                        <div id="submitForm" class="sherah-wc__form-main">
+                            <div class="row">
+                                <h4 style="margin-top:50px;">Thông tin nhà cung cấp</h4>
+
+                                <div class="form-group">
+                                    <label for="exampleInputName">Nhà cung cấp</label>
+                                    <input type="text" class="form-control" id="exampleInputName" value="@ViewBag.TenNcc" readonly>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPhoneNumber">Số điện thoại</label>
+                                    <input type="text" class="form-control" id="exampleInputPhoneNumber" value="@ViewBag.Sdt" readonly>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputAddress">Địa chỉ</label>
+                                    <input type="text" class="form-control" id="exampleInputAddress" value="@ViewBag.DiaChi" readonly>
+
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <h4>Thêm sản phẩm</h4>
+
+                            <table class="table" id="tab_logic">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Tên sách</th>
+                                        <th scope="col">Số lượng</th>
+                                        <th scope="col">Giá</th>
+                                        <th scope="col">Giảm giá</th>
+                                        <th scope="col">Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var i in Model)
+                                    {
+                                        var s = i.SoLuong * i.DonGia;
+                                        <tr id="addr0">
+                                            <td>@index</td>
+                                            <td><input class="form-control bookInput" type="text" name='product[]' value="@i.MaSachNavigation.TenSach" readonly /></td>
+                                            <td><input type="number" name='qty[]' placeholder='Nhập số lượng' class="form-control qty" value="@i.SoLuong" readonly /></td>
+                                            <td><input id="bookPrice" type="number" name='price[]' placeholder='Nhập giá' class="form-control price" value="@i.DonGia" readonly /></td>
+                                            <td><input type="number" name='discount[]' placeholder='Giảm giá' class="form-control discount" value="@i.GiamGia" readonly /></td>
+                                            <td><input type="number" name='total[]' placeholder='0.00' class="form-control total" value="@s" readonly /></td>
+                                        </tr>
+                                        index++;
+                                    }
+                                </tbody>
+                            </table>
+
+                            @* Summary *@
+                            <div class="row">
+                                <div class="col-6 text-left">
+                                </div>
+                                <div class="col-6 text-right">
+                                    <table class="table" id="tab_logic_total">
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-center">Tổng cộng</th>
+                                                <td class="text-center"><input type="number" name='sub_total' class="form-control" id="sub_total" value="@ViewBag.TongTien" readonly /></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Phần trăm chiết khấu</th>
+                                                <td class="text-center">
+                                                    <div class="input-group mb-2 mb-sm-0">
+                                                        <input type="number" class="form-control" id="dis" value="@ViewBag.ChietKhau" readonly />
+                                                        <span class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Tiền chiết Khấu</th>
+                                                <td class="text-center"><input type="number" name='dis_amount' id="dis_amount" class="form-control" value="@ViewBag.ChietKhauAmount" readonly /></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">VAT</th>
+                                                <td class="text-center">
+                                                    <div class="input-group mb-2 mb-sm-0">
+                                                        <input type="number" class="form-control" id="tax" value="@ViewBag.VAT" readonly />
+                                                        <span class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Tiền VAT</th>
+                                                <td class="text-center"><input type="number" name='tax_amount' id="tax_amount" class="form-control" value="@ViewBag.VATAmount" readonly /></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Còn lại</th>
+                                                <td class="text-center">
+                                                    <div class="input-group mb-2 mb-sm-0">
+                                                        <input type="number" id="total_amount" class="form-control" value="@ViewBag.ConLai" readonly />
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            @* Delete button *@
+                            <button data-toggle="modal" data-target="#deleteProductModal" data-id="@ViewBag.Id" type="button" class="btn btn-danger delete-invoice">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Dashboard Inner -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="deleteInvoiceModal" tabindex="-1" role="dialog" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteProductModalLabel">Xác nhận xóa sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa sản phẩm này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelDelete" data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section InvoiceDetails{
+    <script>
+        var invoiceId = $(this).data('id');
+        $('.delete-invoice').on('click', function (e) {
+            e.preventDefault();
+            invoiceId = $(this).data('id');
+            $('#deleteInvoiceModal').modal('show');
+        });
+        $('#confirmDelete').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: '/ImportInvoice/Delete',
+                data: { id: invoiceId },
+                success: function (data) {
+                    // Xử lý khi sản phẩm được xóa thành công
+                    $('#deleteInvoiceModal').modal('hide');
+                    window.location.href = '/ImportInvoice/Index';
+                    // Cập nhật danh sách sản phẩm trên trang
+                },
+                error: function () {
+                    alert("Không thể gửi dữ liệu");
+                }
+            });
+        });
+        $('#cancelDelete').on('click', function () {
+            $('#deleteInvoiceModal').modal('hide');
+        });
+    </script>
+}
