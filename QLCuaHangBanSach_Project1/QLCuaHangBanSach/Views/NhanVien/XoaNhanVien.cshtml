@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Xóa Nhân Viên";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model Nhanvien
+
+<div class="ms-2 mx-2">
+    <h1>Delete</h1>
+    <h4>Nhân Viên</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MaNv)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.MaNv)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TenNv)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.TenNv)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sdt)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.Sdt)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.DiaChi)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Luong)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.Luong)
+        </dt>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="@Model.MaNv" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

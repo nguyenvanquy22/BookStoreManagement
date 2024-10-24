@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Nhân Viên";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model IEnumerable<Nhanvien>
+<h1>Danh sách thông tin nhân viên</h1>
+<table class="table table-striped" id="sherah-table__vendor">
+    <thead>
+        <tr>
+            <th>Mã Nhân Viên</th>
+            <th>Tên Nhân Viên</th>
+            <th>Giới Tính</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ</th>
+            <th>Ngày Sinh</th>
+            <th>Lương</th>
+            <th>Chức Vụ</th>
+            <th>Tên Đăng Nhập</th>
+            <th>Mật Khẩu</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var nv in Model)
+        {
+            <tr>
+                <td>@nv.MaNv</td>
+                <td>@nv.TenNv</td>
+                <td>@nv.GioiTinh</td>
+                <td>@nv.Sdt</td>
+                <td>@nv.DiaChi</td>
+                <td>@nv.NgaySinh.ToString("dd/MM/yyyy")</td>
+                <td>@nv.Luong</td>
+                <td>@nv.ChucVu</td>
+                <td>@nv.TenDangNhap</td>
+                <td>@nv.MatKhau</td>
+                <td><a asp-action="SuaNhanVien" asp-route-id="@nv.MaNv">Sửa</a> | 
+                    <a asp-action="XoaNhanVien" asp-route-id="@nv.MaNv">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="ThemNhanVien" class="btn btn-primary">Thêm nhân viên</a> 
+
+@section StaffsTable{
+    <script>
+        $('#sherah-table__vendor').DataTable({
+            searching: true,
+            info: false,
+            lengthChange: true,
+            scrollCollapse: true,
+            paging: true,
+            language: {
+                paginate: {
+                    next: '<i class="fas fa-angle-right"></i>', // Font Awesome class for next button
+                    previous: '<i class="fas fa-angle-left"></i>' // Font Awesome class for previous button
+                },
+                lengthMenu: 'Showing _MENU_',
+                searchPlaceholder: 'Search...',
+                search: '<span class="sherah-data-table-label">Tìm kiếm</span>',
+            }
+        });
+    </script>
+}

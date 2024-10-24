@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Sửa Nhân Viên";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model Nhanvien
+<h2>Sửa thông tin nhân viên</h2>
+<div>
+    <form asp-controller="NhanVien" asp-action="SuaNhanVien" asp-route-id="@Model.MaNv" method="post">
+        <input type="hidden" asp-for="MaNv" />
+        <div style="margin-top:7px" class="form-group row">
+            <label asp-for="TenNv" class="col-sm-2 col-form-label"></label>
+            <span asp-validation-for="TenNv" class="text-danger"></span>
+            <div class="col-sm-10">
+                <input asp-for="TenNv" class="form-control" placeholder=" Tên Nhân Viên" />
+            </div>
+        </div>
+        <div style="margin-top:7px" class="form-group row">
+            <label asp-for="GioiTinh" class="col-sm-2 col-form-label"></label>
+            <span asp-validation-for="GioiTinh" class="text-danger"></span>
+            <div class="col-sm-10">
+                <input asp-for="GioiTinh" class="form-control" placeholder=" Giới Tính" />
+            </div>
+        </div>
+        <div style="margin-top:7px" class="form-group row">
+            <label asp-for="Sdt" class="col-sm-2 col-form-label"></label>
+            <span asp-validation-for="Sdt" class="text-danger"></span>
+            <div class="col-sm-10">
+                <input asp-for="Sdt" class="form-control" placeholder=" Số Điện Thoại" />
+            </div>
+        </div>
+        <div style="margin-top:7px" class="form-group row">
+            <label asp-for="DiaChi" class="col-sm-2 col-form-label"></label>
+            <span asp-validation-for="DiaChi" class="text-danger"></span>
+            <div class="col-sm-10">
+                <input asp-for="DiaChi" class="form-control" placeholder=" Tên Nhân Viên" />
+            </div>
+        </div>
+        <div style="margin-top:7px" class="form-group row">
+            <label asp-for="NgaySinh" class="col-sm-2 col-form-label"></label>
+            <span asp-validation-for="NgaySinh" class="text-danger"></span>
+            <div class="col-sm-10">
+                <input asp-for="NgaySinh" class="form-control" placeholder=" Tên Nhân Viên" />
+            </div>
+        </div>
+        <div style="margin-top:7px" class="form-group row">
+            <label asp-for="Luong" class="col-sm-2 col-form-label"></label>
+            <span asp-validation-for="Luong" class="text-danger"></span>
+            <div class="col-sm-10">
+                <input asp-for="Luong" class="form-control" placeholder=" Tên Nhân Viên" />
+            </div>
+        </div>
+        <div style="margin-top:7px" class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </form>
+</div>
