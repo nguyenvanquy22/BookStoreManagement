@@ -1,0 +1,378 @@
+﻿@{
+    ViewData["Title"] = "Thêm hóa đơn nhập";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<div id="content"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="sherah-body">
+                <!-- Dashboard Inner -->
+                <div class="sherah-dsinner">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="sherah-breadcrumb mg-top-30">
+                                <h2 class="sherah-breadcrumb__title">Thêm hóa đơn</h2>
+                                <ul class="sherah-breadcrumb__list">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active"><a href="#">Thêm hóa đơn</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sherah-page-inner sherah-border sherah-basic-page sherah-default-bg mg-top-25 p-0">
+                        <div id="submitForm" class="sherah-wc__form-main">
+                            <div class="row">
+                                <h4 style="margin-top:50px;">Thông tin nhà cung cấp</h4>
+
+                                <div class="form-group">
+                                    <label for="exampleInputName">Nhà cung cấp</label>
+                                    <input type="text" class="form-control" id="exampleInputName" placeholder="Tên nhà cung cấp">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPhoneNumber">Số điện thoại</label>
+                                    <input type="text" class="form-control" id="exampleInputPhoneNumber" placeholder="Số điện thoại">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputAddress">Địa chỉ</label>
+                                    <input type="text" class="form-control" id="exampleInputAddress" placeholder="Địa chỉ">
+
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <h4>Thêm sản phẩm</h4>
+
+                            <table class="table" id="tab_logic">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Tên sách</th>
+                                        <th scope="col">Số lượng</th>
+                                        <th scope="col">Giá</th>
+                                        <th scope="col">Giảm giá</th>
+                                        <th scope="col">Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="addr0">
+                                        <td>1</td>
+                                        <td>
+                                            <input class="form-control bookInput" type="text" name='product[]' placeholder='Nhập tên sách' />
+                                            <input class="idInput" type="hidden" />
+                                            <ul class="list-group bookList">
+                                                @for (int i = 0; i < ViewBag.Books.Count; i++)
+                                                {
+                                                    <li data-id="@ViewBag.Books[i].MaSach" data-name-book="@ViewBag.Books[i].TenSach" data-quantity="@ViewBag.Books[i].SoLuong" data-book-price="@ViewBag.Books[i].GiaBan" class="list-group-item">@ViewBag.Books[i].TenSach (@ViewBag.Books[i].SoLuong)</li>
+                                                }
+                                            </ul>
+                                        </td>
+                                        <td><input type="number" name='qty[]' placeholder='Nhập số lượng' class="form-control qty" step="1" min="0" /></td>
+                                        <td><input id="bookPrice" type="number" name='price[]' placeholder='Nhập giá' class="form-control price" step="1.00" min="0" readonly /></td>
+                                        <td><input type="number" name='discount[]' placeholder='Giảm giá' class="form-control discount" step="1.00" min="0" max="100" value="0" /></td>
+                                        <td><input type="number" name='total[]' placeholder='0.00' class="form-control total" readonly /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            @* Add/Delete Product button *@
+                            <button id="add_row" class="btn btn-primary" style="background-color: green">Thêm</button>
+                            <button id="delete_row" class="btn btn-success" style="background-color: red">Xóa</button>
+
+                            @* Summary *@
+                            <div class="row">
+                                <div class="col-6 text-left">
+                                </div>
+                                <div class="col-6 text-right">
+                                    <table class="table" id="tab_logic_total">
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-center">Tổng cộng</th>
+                                                <td class="text-center"><input type="number" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Phần trăm chiết khấu</th>
+                                                <td class="text-center">
+                                                    <div class="input-group mb-2 mb-sm-0">
+                                                        <input type="number" class="form-control" id="dis" placeholder="0" min="0" max="100" step="0.0" value="0" />
+                                                        <span class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Tiền chiết khấu</th>
+                                                <td class="text-center"><input type="number" name='dis_amount' id="dis_amount" placeholder='0.00' class="form-control" readonly /></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">VAT</th>
+                                                <td class="text-center">
+                                                    <div class="input-group mb-2 mb-sm-0">
+                                                        <input type="number" class="form-control" id="tax" placeholder="0" min="0" max="10" step="0.0" value="8" />
+                                                        <span class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Tiền VAT</th>
+                                                <td class="text-center"><input type="number" name='tax_amount' id="tax_amount" placeholder='0.00' class="form-control" readonly /></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Còn lại</th>
+                                                <td class="text-center">
+                                                    <div class="input-group mb-2 mb-sm-0">
+                                                        <input type="number" id="total_amount" class="form-control" placeholder="0" min="0" max="100" step="0.0" value="0" readonly />
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            @* Add/Delete Invoice button *@
+                            <div class=" mg-top-40 sherah-dflex sherah-dflex-gap-30 justify-content-end">
+                                <button id="submit" type="submit" class="sherah-btn sherah-btn__primary">Thêm hóa đơn</button>
+                                <button id="cancelButton" class="sherah-btn sherah-btn__third">Hủy</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Dashboard Inner -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section createInvoice{
+    <script>
+        $(document).ready(function () {
+
+            // Ẩn danh sách sách ban đầu
+            $('.bookList').hide();
+
+            // Filter sách cho hàng đầu tiên
+            var bookInput0 = $('.bookInput');
+            var qtyInput0 = $('.qty');
+            var idInput0 = $('.idInput');
+
+            var bookList0 = $('.bookList');
+            bookInput0.on('input', filterBooks0);
+
+            bookList0.on('click', 'li', function () {
+                var name = $(this).data("name-book");
+                bookInput0.val(name);
+                var price = $(this).data("book-price");
+                $('.price').val(price);
+                var quantity = $(this).data("quantity");
+                qtyInput0.attr("max", quantity);
+                var id = $(this).data("id");
+                idInput0.val(id);
+
+                // Ẩn danh sách sau khi chọn một mục
+                bookList0.hide();
+            });
+
+            function filterBooks0() {
+                var searchTerm = bookInput0.val().toLowerCase();
+
+                // Hiển thị danh sách sách khi có dữ liệu nhập vào input
+                if (searchTerm.length > 0) {
+                    bookList0.show();
+                } else {
+                    bookList0.hide();
+                }
+
+                bookList0.find('li').each(function () {
+                    var bookName = $(this).text().split(' (')[0].toLowerCase(); // Lấy tên sách bằng cách tách chuỗi
+                    if (bookName.includes(searchTerm)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+
+            // Tạo hàng mới
+            var i = 1;
+            $("#add_row").click(function (e) {
+                e.preventDefault();
+                var newRow = $('#addr0').clone(); // Sao chép hàng đầu tiên
+                newRow.attr("id", "addr" + i); // Đặt ID mới cho hàng mới
+                newRow.find('td:first-child').html(i + 1); // Cập nhật số thứ tự hàng mới
+
+                // Xóa giá trị trong các trường input mới
+                newRow.find('.bookInput, .qty, .price, .discount, .total').val('');
+
+                // Gán lớp CSS duy nhất cho các trường mới
+                var bookInput = newRow.find('.bookInput');
+                bookInput.addClass("new-book-input");
+
+                // Đặt sự kiện lọc sách cho trường tên sách mới
+                bookInput.on('input', function () {
+                    filterBooks(newRow);
+                });
+
+                // Đặt sự kiện khi chọn tên sách từ danh sách
+                newRow.find('.bookList').on('click', 'li', function () {
+                    var bookName = $(this).data("name-book");
+                    newRow.find('.bookInput').val(bookName);
+                    var price = $(this).data("book-price");
+                    newRow.find('.price').val(price);
+                    var id = $(this).data("id");
+                    newRow.find('.idInput').val(id);
+
+                    // Ẩn danh sau khi chọn
+                    newRow.find('.bookList').hide();
+                });
+
+                // Thêm hàng mới vào bảng và tăng biến đếm
+                $('#tab_logic tbody').append(newRow);
+                i++;
+            });
+
+            function filterBooks(row) {
+                var bookInput = row.find('.bookInput');
+                var bookList = row.find('.bookList');
+
+                // Hiển thị danh sách sách khi có dữ liệu nhập vào input
+                if (bookInput.val().length > 0) {
+                    bookList.show();
+                } else {
+                    bookList.hide();
+                }
+
+                bookList.find('li').each(function () {
+                    var bookName = $(this).text().split(' (')[0].toLowerCase();
+                    if (bookName.includes(bookInput.val().toLowerCase())) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+
+            // Xóa hàng
+            $("#delete_row").click(function (e) {
+                e.preventDefault();
+                if (i > 1) {
+                    $("#addr" + (i - 1)).html('');
+                    i--;
+                }
+                calc();
+            });
+
+            $('#cancelButton').click(function () {
+                var userConfirmed = confirm('Bạn có chắc muốn hủy?');
+
+                if (userConfirmed) {
+                    $("#submitForm").submit(function () {
+                        return false;
+                    });
+                    window.location.href = '/ImportInvoice/Index';
+                }
+            });
+
+            //
+
+
+            // Input thay đổi => tính lại tiền
+            $('#tab_logic tbody').on('keyup change', function () {
+                calc();
+            });
+            $('.discount').on('keyup change', function () {
+                calc();
+            });
+            $('#tax').on('keyup change', function () {
+                calc_total();
+            });
+            $('#dis').on('keyup change', function () {
+                calc_total();
+            });
+        });
+
+        function calc() {
+            $('#tab_logic tbody tr').each(function (i, element) {
+                var html = $(this).html();
+                if (html != '') {
+                    var qty = $(this).find('.qty').val();
+                    var price = $(this).find('.price').val();
+                    var discount = $(this).find('.discount').val();
+                    $(this).find('.total').val(qty * price * (1 - discount / 100));
+
+                    calc_total();
+                }
+            });
+        }
+
+        function calc_total() {
+            total = 0;
+            $('.total').each(function () {
+                total += Number($(this).val());
+            });
+            $('#sub_total').val(total.toFixed(2));
+            dis_sum = total / 100 * $('#dis').val();
+            $('#dis_amount').val(dis_sum.toFixed(2));
+            tax_sum = total / 100 * $('#tax').val();
+            $('#tax_amount').val(tax_sum.toFixed(2));
+            total_sum = tax_sum - dis_sum + total;
+            $('#total_amount').val(total_sum.toFixed(2));
+        }
+
+        $('#submit').click(function (e) {
+            e.preventDefault();
+            var formData = {
+                ImportInvoice: {
+                    MaNccNavigation: {
+                        TenNcc: $("#exampleInputName").val(),
+                        Sdt: $("#exampleInputPhoneNumber").val(),
+                        DiaChi: $("#exampleInputAddress").val()
+                    },
+                    ChietKhau: $("#dis").val(),
+                    VAT: $("#tax").val(),
+                    TongTien: $("#total_amount").val()
+                },
+                ImportInvoiceDetails: []
+            };
+
+            // Lặp qua từng hàng trong bảng
+            $("#tab_logic tbody tr").each(function () {
+                var row = $(this);
+                var maSach = row.find('.idInput').val();
+                var soLuong = row.find('.qty').val();
+                var donGia = row.find('.price').val();
+                var giamGia = row.find('.discount').val();
+
+                // Thêm dữ liệu từ cột 1-2-3-4 vào mảng ImportInvoiceDetails
+                formData.ImportInvoiceDetails.push({
+                    MaSach: maSach,
+                    SoLuong: soLuong,
+                    DonGia: donGia,
+                    GiamGia: giamGia
+                });
+            });
+            //alert(formData.ImportInvoiceDetails[2].MaSach);
+
+            // Dùng ajax để truyền dữ liệu
+            $.ajax({
+                type: "POST",
+                url: "/ImportInvoice/GetData",
+                data: JSON.stringify(formData),
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    alert("Thông tin đã được truyền");
+                    window.location.href = '/ImportInvoice/Index';
+                    console.log(formData);
+                    //$('div#content').html(response);
+                },
+                error: function () {
+                    alert("Đã xảy ra lỗi khi gửi dữ liệu.");
+                }
+            });
+        }); // end submit
+    </script>
+}

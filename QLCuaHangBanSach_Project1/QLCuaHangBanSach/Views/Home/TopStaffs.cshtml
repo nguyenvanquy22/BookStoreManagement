@@ -1,0 +1,63 @@
+﻿@{
+	var no = 0;
+}
+<table id="sherah-table__main"
+	   class="sherah-table__main sherah-table__main--front sherah-table__main-v1">
+	<!-- sherah Table Head -->
+	<thead class="sherah-table__head">
+		<tr>
+			<th class="sherah-table__column-1 sherah-table__h1" style="padding-left: 24px">STT</th>
+			<th class="sherah-table__column-2 sherah-table__h2">Mã nhân viên</th>
+			<th class="sherah-table__column-3 sherah-table__h3">Tên nhân viên</th>
+			<th class="sherah-table__column-4 sherah-table__h4">Số lượng</th>
+			<th class="sherah-table__column-5 sherah-table__h5">Doanh thu</th>
+			<th class="sherah-table__column-6 sherah-table__h6"></th>
+		</tr>
+	</thead>
+	<!-- sherah Table Body -->
+	<tbody class="sherah-table__body">
+		@foreach (var s in ViewBag.TopStaffs)
+		{
+			<tr>
+				<td class="sherah-table__column-1 sherah-table__data-1" style="padding-left: 32px">
+					<div class="sherah-table__product">
+						<p class="crany-table__product-content-STT">
+							@(no++ < 10 ? "0" : "")@no
+						</p>
+					</div>
+				</td>
+				<td class="sherah-table__column-2 sherah-table__data-2" style="padding-left: 32px">
+					<div class="sherah-table__product">
+						<p class="sherah-table__product-MaNV">@s.MaNV</p>
+					</div>
+				</td>
+				<td class="sherah-table__column-3 sherah-table__data-3" style="padding-left: 32px">
+					<div class="sherah-table__product">
+						<p class="sherah-table__product-TenNV">@s.TenNV</p>
+					</div>
+				</td>
+				<td class="sherah-table__column-4 sherah-table__data-4" style="padding-left: 32px">
+					<div class="sherah-table__product">
+						<p class="sherah-table__product-SoLuong">
+							@(s.TongSL < 10 ? "0" : "")@s.TongSL
+						</p>
+					</div>
+				</td>
+				<td class="sherah-table__column-5 sherah-table__data-5" style="padding-left: 32px">
+					<div class="sherah-table__product">
+						<p class="sherah-table__product-DonGia">@s.TongThu (VND)</p>
+					</div>
+				</td>
+				<td class="sherah-table__column-6 sherah-table__data-6">
+					<div class="sherah-table__product">
+						<p class="sherah-table__product"></p>
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>
+	<!-- End sherah Table Body -->
+</table>
+
+
+

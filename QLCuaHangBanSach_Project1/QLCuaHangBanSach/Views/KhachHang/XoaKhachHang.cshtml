@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Khách Hàng";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model Khachhang
+<form asp-controller="KhachHang" asp-route-id="@Model.MaKh" method="post" class="mt-3">
+    <input type="hidden" asp-for="MaKh"/>
+    <div class="ms-2 mx-2">
+        <h1>Xóa khách hàng</h1>
+        <h3>Bạn chắc chắn muốn xóa khách hàng này không?</h3>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayFor(Model => Model.MaKh)
+            </dt>
+            <dt class="col-sm-10">
+                @Html.DisplayFor(Model=>Model.TenKh)
+            </dt>
+            <dt class="col-sm-2">
+                @Html.DisplayFor(Model => Model.Sdt)
+            </dt>
+            <dt class="col-sm-10">
+                @Html.DisplayFor(Model=>Model.DiaChi)
+            </dt>
+        </dl>
+        <form asp-action="XoaKhachHang">
+            <input type="hidden" asp-for="@Model.MaKh" />
+            <input type="submit" value="Xóa Khách Hàng" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>
+</form>

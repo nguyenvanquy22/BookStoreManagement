@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Khách Hàng";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model IEnumerable<Khachhang>
+<h1>Danh sách thông tin khách hàng</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mã khách hàng</th>
+            <th>Họ tên khách hàng</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var khachHang in Model)
+        {
+            <tr>
+                <td>@khachHang.MaKh</td>
+                <td>@khachHang.TenKh</td>
+                <td>@khachHang.Sdt</td>
+                <td>@khachHang.DiaChi</td>
+                <td><a asp-action="SuaKhachHang" asp-route-id="@khachHang.MaKh">Sửa</a> |
+                    <a asp-action="XoaKhachHang" asp-route-id="@khachHang.MaKh">Xóa</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="ThemKhachHang" class="btn btn-primary">Thêm khách hàng</a>

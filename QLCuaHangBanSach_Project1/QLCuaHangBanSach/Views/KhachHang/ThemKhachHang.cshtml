@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Thêm khách hàng";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model Khachhang
+<h1>Thêm khách hàng</h1>
+<div>
+    @* <div asp-validation-summary="All" class="text-danger"></div> *@
+    <form asp-controller="KhachHang" asp-action="ThemKhachHang" method="post" class="mt-3">
+        <div style="margin-top:7px" class="form-group row">
+            <label asp-for="TenKh" class="col-sm-2 col-form-label"></label>
+            <span asp-validation-for="TenKh" class="text-danger"></span>
+            <div class="col-sm-10">
+                <input asp-for="TenKh" class="form-control" placeholder="Họ và tên"/>
+            </div>
+        </div>
+         <div style="margin-top:7px" class="form-group row">
+            <label asp-for="Sdt" class="col-sm-2 col-form-label"></label>
+            <span asp-validation-for="Sdt" class="text-danger"></span>
+            <div class="col-sm-10">
+                <input asp-for="Sdt" class="form-control" placeholder="Số điện thoại"/>
+            </div>
+         </div>
+         <div style="margin-top:7px" class="form-group row">
+            <label asp-for="DiaChi" class="col-sm-2 col-form-label"></label>
+            <span asp-validation-for="DiaChi" class="text-danger"></span>
+            <div class="col-sm-10">
+                <input asp-for="DiaChi" class="form-control" plasceholder="Địa chỉ"></input>
+             </div>
+         </div>
+         <div style="margin-top:10px" class="form-group row">
+             <div class="col-sm-10">
+                 <button type="submit" class="btn btn-primary">Lưu</button>
+             </div>
+         </div>
+    </form>
+</div>
