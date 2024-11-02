@@ -33,11 +33,14 @@
                                     <div class="sherah-progress-card__heading">
                                         <span class="sherah-pcolor">Tổng doanh thu</span>
                                         <h4 class="sherah-progress-card__title">
-                                            <b class="count-animate">@ViewBag.TotalSells VND</b>
+                                            <b class="count-animate">
+                                                @(ViewBag.TotalSells > 1000 ? ViewBag.TotalSells / 1000 + "k" : ViewBag.TotalSells)
+                                                <span class="text-sm">VNĐ</span>
+                                            </b>
                                         </h4>
                                     </div>
                                     <div class="sherah-progress-card__button">
-                                        <p class="sherah-progress-card__text sherah-color3">2023</p>
+                                        <p class="sherah-progress-card__text sherah-color3">@DateTime.Now.Year</p>
                                         <a href="/ExportInvoice/" class="sherah-see-all">See details</a>
                                     </div>
 
@@ -112,7 +115,7 @@
                                     </div>
                                     <div class="sherah-progress-card__button">
                                         <p class="sherah-progress-card__text sherah-color1">
-                                            2023
+                                            @DateTime.Now.Year
                                         </p>
                                         <a href="/KhachHang" class="sherah-see-all">See details</a>
                                     </div>
@@ -182,7 +185,7 @@
                                                     aria-label="Default select example" style="padding: 0 10px">
                                                 @{
                                                     var i = ViewBag.MinYears;
-                                                    for (; i <= 2023; i++)
+                                                    for (; i <= @DateTime.Now.Year; i++)
                                                     {
                                                         <option value="@i">@i</option>
                                                     }
