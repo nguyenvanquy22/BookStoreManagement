@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using static System.Reflection.Metadata.BlobBuilder;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QLCuaHangBanSach.Controllers
 {
-	public class ExportInvoiceController : Controller
+    [Authorize]
+    public class ExportInvoiceController : Controller
 	{
 		private DBCuaHangBanSachContext db;
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using QLCuaHangBanSach.Models;
 
 namespace QLCuaHangBanSach.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private DBCuaHangBanSachContext db;

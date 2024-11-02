@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Web;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 
 namespace QLCuaHangBanSach.Controllers
 {
+    [Authorize]
     public class NhanVienController : Controller
     {
         private DBCuaHangBanSachContext db;

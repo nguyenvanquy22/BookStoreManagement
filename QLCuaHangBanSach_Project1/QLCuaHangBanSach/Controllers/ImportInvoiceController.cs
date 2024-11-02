@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QLCuaHangBanSach.Models;
 
 namespace QLCuaHangBanSach.Controllers
 {
-	public class ImportInvoiceController : Controller
+    [Authorize]
+    public class ImportInvoiceController : Controller
 	{
 		private DBCuaHangBanSachContext db;
 

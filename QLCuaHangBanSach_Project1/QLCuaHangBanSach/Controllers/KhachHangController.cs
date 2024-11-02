@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLCuaHangBanSach.Models;
 
 namespace QLCuaHangBanSach.Controllers
 {
+    [Authorize]
     public class KhachHangController : Controller
     {
         private DBCuaHangBanSachContext db;
