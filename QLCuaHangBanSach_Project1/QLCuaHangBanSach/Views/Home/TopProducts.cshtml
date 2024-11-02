@@ -1,0 +1,21 @@
+﻿@{
+	
+}
+@foreach (var c in ViewBag.TopProducts)
+{
+	<div class="sherah-product-card sherah-default-bg sherah-border mg-top-30">
+		<!-- Card Image -->
+		<div class="sherah-product-card__img">
+			<img src="~/img/Products/@c.Anh">
+		</div>
+		<!-- Card Content -->
+		<div class="sherah-product-card__content sherah-dflex-column sherah-flex-gap-5">
+			<h5 class="sherah-product-card__title">
+				<a href="#" class="sherah-pcolor"><b>@c.TenSach</b></a>
+			</h5>
+			<h4 class="sherah-product-card__price">@c.DonGia (VND)</h4>
+			<p class="TotalAmount">Đã bán: @c.TongSL quyển</p>
+			<p class="TotalPrice">Tổng thu: @c.TongThu (VND)</p>
+		</div>
+	</div>
+}
